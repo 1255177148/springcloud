@@ -1,5 +1,6 @@
 package com.hezhan.ribbon.controller;
 
+import com.hezhan.ribbon.entity.Hi;
 import com.hezhan.ribbon.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class RibbonController {
     }
 
     @PostMapping("/hi")
-    public String postHi(@RequestBody String name){
+    public String postHi(@RequestBody Hi name){
         return helloService.postHi(name);
     }
 }

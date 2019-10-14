@@ -22,7 +22,7 @@ public class HiServiceImpl implements HiService {
 
     @Override
     public String get(Hi hi) {
-        String url = "http://47.101.50.120:8762/hi";
+        String url = "http://localhost:8762/hi";
         Map<String, Object> headerParam = new HashMap<>();
         headerParam.put("name", hi.getName());
         Map<String, Map<String, Object>> param = new HashMap<>();

@@ -1,10 +1,13 @@
 package com.hezhan.ribbon.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.hezhan.ribbon.entity.Hi;
 import com.hezhan.ribbon.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -23,10 +26,13 @@ public class HelloServiceImpl implements HelloService {
     }
 
     @Override
-    public String postHi(String name) {
-        MultiValueMap<String, String> bodyParam = new LinkedMultiValueMap<>();
-        bodyParam.add("name", name);
-        return restTemplate.postForObject("http://CLIENT/hi", bodyParam, String.class);
+    public String postHi(Hi name) {
+//        MultiValueMap<String, String> bodyParam = new LinkedMultiValueMap<>();
+//        bodyParam.add("name", name);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> httpEntity = new HttpEntity<>(JSON.toJSONString(name), headers);
+        return restTemplate.postForObject("http://client/hi", httpEntity, String.class);
     }
 
     @Override
