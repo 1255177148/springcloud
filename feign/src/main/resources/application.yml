@@ -1,0 +1,48 @@
+server:
+  port: 8765
+spring:
+  application:
+    name: feign-server
+  zipkin:
+    base-url: http://localhost:9411
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: 19941128ya
+    virtual-host: test
+    publisher-confirms: true
+    publisher-returns: true
+#    listener:
+#      direct:
+#        acknowledge-mode:
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+http:
+  #最大连接数
+  maxTotal: 5000
+  #并发数
+  defaultMaxPerRoute: 3000
+  #创建连接的最长时间
+  connectTimeout: 1000
+  #从连接池中获取到连接的最长时间
+  connectionRequestTimeout: 500
+  #数据传输的最长时间
+  socketTimeout: 15000
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  threadpool:
+    default:
+      #并发执行的最大线程数
+      coreSize: 200
+      #BlockingQueue的最大队列数，默认值-1
+      maxQueueSize: 1000
+      #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
+      queueSizeRejectionThreshold: 800

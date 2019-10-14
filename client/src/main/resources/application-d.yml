@@ -1,0 +1,20 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: client
+  zipkin:
+    base-url: http://localhost:9411
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: admin
+    password: 19941128ya
+    virtual-host: test
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8861/eureka/,http://localhost:8761/eureka/,http://localhost:8961/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
