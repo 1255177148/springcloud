@@ -3,6 +3,8 @@ package com.hezhan.client.controller;
 import com.hezhan.client.entity.User;
 import com.hezhan.client.exception.RemoteException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -64,5 +66,12 @@ public class RestTemplateController {
                 throw new RemoteException("路径参数不正确");
             }
         }
+    }
+
+    @GetMapping("/test/exception")
+    public ResponseEntity<String> testException(){
+        HttpStatus httpStatus = HttpStatus.SERVICE_UNAVAILABLE;
+        String result = "";
+        return new ResponseEntity<String>(result, httpStatus);
     }
 }
