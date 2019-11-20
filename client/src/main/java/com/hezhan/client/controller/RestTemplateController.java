@@ -1,11 +1,16 @@
 package com.hezhan.client.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.hezhan.client.entity.Hi;
 import com.hezhan.client.entity.User;
 import com.hezhan.client.exception.RemoteException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author hezhan
@@ -22,7 +27,15 @@ public class RestTemplateController {
 
     @GetMapping("/testHeader")
     public String testHeader(@RequestHeader("name") String name){
-        return name;
+        User user = new User();
+        user.setName("hezhan");
+        user.setAge(3);
+        Hi hi = new Hi();
+        hi.setName("hezhan");
+        List<Hi> hiList = new ArrayList<>();
+        hiList.add(hi);
+        user.setData(hiList);
+        return JSON.toJSONString(user);
     }
 
     @PutMapping("/testPut")
