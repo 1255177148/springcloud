@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +29,16 @@ public class RestTemplateController {
 
     @GetMapping("/testHeader")
     public String testHeader(@RequestHeader("name") String name){
+        try {
+            name = URLDecoder.decode(name, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RemoteException("URLDecoder decode header参数失败");
+        }
         User user = new User();
-        user.setName("hezhan");
+        user.setName(name);
         user.setAge(3);
         Hi hi = new Hi();
-        hi.setName("hezhan");
+        hi.setName(name);
         List<Hi> hiList = new ArrayList<>();
         hiList.add(hi);
         user.setData(hiList);
