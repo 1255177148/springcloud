@@ -1,5 +1,8 @@
 package com.hezhan.client.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -9,14 +12,33 @@ import java.util.List;
 public class User {
     private String name;
     private Integer age;
-    private List<Hi> data;
+    private List<String> list;
+    private String address;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date date;
 
-    public List<Hi> getData() {
-        return data;
+    public Date getDate() {
+        return date;
     }
 
-    public void setData(List<Hi> data) {
-        this.data = data;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<String> getList() {
+        return list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
     }
 
     public String getName() {

@@ -1,7 +1,6 @@
 package com.hezhan.client.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.hezhan.client.entity.Hi;
 import com.hezhan.client.entity.User;
 import com.hezhan.client.exception.RemoteException;
 import org.apache.commons.lang3.StringUtils;
@@ -11,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 /**
  * @Author hezhan
@@ -28,7 +26,7 @@ public class RestTemplateController {
     }
 
     @GetMapping("/testHeader")
-    public String testHeader(@RequestHeader("name") String name){
+    public User testHeader(@RequestHeader("name") String name){
         try {
             name = URLDecoder.decode(name, "UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -37,12 +35,8 @@ public class RestTemplateController {
         User user = new User();
         user.setName(name);
         user.setAge(3);
-        Hi hi = new Hi();
-        hi.setName(name);
-        List<Hi> hiList = new ArrayList<>();
-        hiList.add(hi);
-        user.setData(hiList);
-        return JSON.toJSONString(user);
+        user.setDate(new Date());
+        return user;
     }
 
     @PutMapping("/testPut")
@@ -93,5 +87,12 @@ public class RestTemplateController {
         HttpStatus httpStatus = HttpStatus.SERVICE_UNAVAILABLE;
         String result = "";
         return new ResponseEntity<String>(result, httpStatus);
+    }
+
+    @PostMapping("/test/post")
+    public String testPostForBody(@RequestBody User user){
+        String name = user.getName();
+        String address  = user.getAddress();
+        return JSON.toJSONString(user);
     }
 }
