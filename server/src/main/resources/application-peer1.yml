@@ -2,6 +2,7 @@ server:
   port: 8761
 eureka:
   client:
+    # 让自己不需要注册在eureka上，表明自己是一个eureka server
 #    register-with-eureka: false
     fetch-registry: false
     service-url:

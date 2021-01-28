@@ -1,0 +1,40 @@
+server:
+  port: 9092
+spring:
+  application:
+    name: redis-feign-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      # 是否对请求进行GZIP压缩
+      enabled: false
+      # 指定压缩的请求数据类型
+      mime-types: text/xml,application/xml,application/json
+      # 超过该大小的请求会被压缩
+      min-request-size: 2048
+    response:
+      # 是否对响应进行GZIP压缩
+      enabled: false
+
+
+hystrix:
+  threadpool:
+    default:
+      #并发执行的最大线程数
+      coreSize: 200
+      #BlockingQueue的最大队列数，默认值-1
+      maxQueueSize: 1000
+      #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
+      queueSizeRejectionThreshold: 800
+
