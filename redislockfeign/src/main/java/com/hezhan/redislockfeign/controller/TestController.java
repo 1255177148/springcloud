@@ -32,7 +32,7 @@ public class TestController {
      * 我们这里模拟的就是一个简单的用户下单时，减库存的操作，看多个服务中，减库存的操作是否会引发线程安全问题
      * @return
      */
-    @PostMapping("inventory")
+    @PostMapping("/inventory")
     public boolean inventory(){
         return testService.reduceInventory();
     }

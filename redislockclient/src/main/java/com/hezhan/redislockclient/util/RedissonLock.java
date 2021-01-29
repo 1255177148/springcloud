@@ -39,16 +39,15 @@ public class RedissonLock {
 
         RLock lock = redissonClient.getLock(lockName);
         /**
-         * 使用tryLock()获取锁而不是用lock()获取锁，
-         * 原因是lock()，如果锁已被占用，则直接线程阻塞，只到锁被释放；
-         * 而tryLock()，设定了等待时间,在这个等待时间没过期前，
-         * 也会阻塞线程，去反复获取锁，只到获取到锁或者超过等待时间，就返回false。
+         * tryLock()和lock()的区别
+         * lock()，如果锁已被占用，则直接线程阻塞，只到锁被释放；
+         * tryLock()，设定了等待时间,在这个等待时间没过期前，也会阻塞线程，去反复获取锁，只到获取到锁或者超过等待时间，就返回false。
          */
-        boolean result = lock.tryLock(waitTime, leaseTime, timeUnit);
-        if (result) {
-            log.info("线程 [{}] 获取锁 [{}] 成功", Thread.currentThread().getName(), lockName);
-        }
-        return result;
+//        boolean result = lock.tryLock(waitTime, leaseTime, timeUnit);
+//        if (result) {
+//            log.info("线程 [{}] 获取锁 [{}] 成功", Thread.currentThread().getName(), lockName);
+//        }
+        return lock.tryLock(waitTime, leaseTime, timeUnit);
     }
 
     /**

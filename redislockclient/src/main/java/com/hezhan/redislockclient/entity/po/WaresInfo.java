@@ -59,7 +59,7 @@ public class WaresInfo implements Serializable {
      * 库存量
      */
     @TableField("inventory")
-    private Integer inventory;
+    private int inventory;
 
 
 }

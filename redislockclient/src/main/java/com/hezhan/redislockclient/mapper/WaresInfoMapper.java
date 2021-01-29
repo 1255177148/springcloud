@@ -2,6 +2,7 @@ package com.hezhan.redislockclient.mapper;
 
 import com.hezhan.redislockclient.entity.po.WaresInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface WaresInfoMapper extends BaseMapper<WaresInfo> {
 
+    /**
+     * 修改库存量
+     * @param id
+     * @param inventory
+     * @return
+     */
+    int updateInventory(@Param("id") Integer id, @Param("inventory") Integer inventory);
 }

@@ -1,0 +1,1 @@
+INSERT INTO `demo`.`wares_info` (`code`, `name`, `manufacturer`, `shop_code`, `inventory`) VALUES ('001', '鞋子', '特步', 'A001', '10000');

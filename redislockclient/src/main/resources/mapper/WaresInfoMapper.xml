@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hezhan.redislockclient.mapper.WaresInfoMapper">
+    <resultMap id="BaseMapper" type="com.hezhan.redislockclient.entity.po.WaresInfo">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="manufacturer" property="manufacturer"/>
+        <result column="shop_code" property="shopCode"/>
+        <result column="inventory" property="inventory"/>
+    </resultMap>
+    <update id="updateInventory">
+        update wares_info set inventory = #{inventory} where id = #{id}
+    </update>
+
+
+</mapper>

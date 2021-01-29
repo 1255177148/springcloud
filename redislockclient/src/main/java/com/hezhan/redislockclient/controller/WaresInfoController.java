@@ -3,6 +3,7 @@ package com.hezhan.redislockclient.controller;
 
 import com.hezhan.redislockclient.service.WaresInfoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
