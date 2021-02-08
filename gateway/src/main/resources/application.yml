@@ -1,0 +1,26 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+          # 路由的id，服务名
+        - id: redis-lock-client
+          # lb代表从注册中心获取服务，并且以负载均衡方式转发
+          uri: lb://redis-lock-client
+          predicates:
+            # 这里的Path配置的是对应服务的前缀，依靠前缀分发到不同的服务上
+            - Path=/client/**
+          # 加上StripPrefix=1，否则转发到对应服务时会带上前缀
+          filters:
+            - StripPrefix=1
+server:
+  port: 8561
