@@ -2,6 +2,7 @@ package com.hezhan.redislockclient.service;
 
 import com.hezhan.redislockclient.entity.po.WaresInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hezhan.redislockclient.entity.vo.Demo;
 
 /**
  * <p>
@@ -13,7 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface WaresInfoService extends IService<WaresInfo> {
 
-    String hi();
+    String hi(Demo demo);
 
     /**
      * 模拟用户下单时，减去库存，

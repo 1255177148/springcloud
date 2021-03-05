@@ -1,6 +1,8 @@
 package com.hezhan.redislockclient.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.hezhan.redislockclient.entity.po.WaresInfo;
+import com.hezhan.redislockclient.entity.vo.Demo;
 import com.hezhan.redislockclient.mapper.WaresInfoMapper;
 import com.hezhan.redislockclient.service.WaresInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -40,8 +42,8 @@ public class WaresInfoServiceImpl extends ServiceImpl<WaresInfoMapper, WaresInfo
     private String port;
 
     @Override
-    public String hi() {
-        return port;
+    public String hi(Demo demo) {
+        return JSON.toJSONString(demo);
     }
 
     @Override

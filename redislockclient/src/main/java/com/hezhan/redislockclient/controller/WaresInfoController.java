@@ -1,10 +1,12 @@
 package com.hezhan.redislockclient.controller;
 
 
+import com.hezhan.redislockclient.entity.vo.Demo;
 import com.hezhan.redislockclient.service.WaresInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +30,9 @@ public class WaresInfoController {
     private WaresInfoService waresInfoService;
 
     @PostMapping("/test")
-    public String test(){
+    public String test(@RequestBody Demo demo){
         log.info("进入test()");
-        return waresInfoService.hi();
+        return waresInfoService.hi(demo);
     }
 
     /**
