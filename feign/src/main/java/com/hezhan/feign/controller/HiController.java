@@ -24,42 +24,47 @@ public class HiController {
     HelloSender helloSender;
 
     @GetMapping("/hi")
-    public String sayHi(@RequestParam("name") String name){
+    public String sayHi(@RequestParam("name") String name) {
         return helloService.sayHi(name);
     }
 
     @PostMapping("/hi")
-    public String postHi(@RequestBody Hi name){
+    public String postHi(@RequestBody Hi name) {
         return helloService.postHi(name);
     }
 
     @PutMapping("/hi")
-    public String putHi(@RequestBody String name){
+    public String putHi(@RequestBody String name) {
         return helloService.putHi(name);
     }
 
     @DeleteMapping("/hi/{name}")
-    public String deleteHi(@PathVariable("name") String name){
+    public String deleteHi(@PathVariable("name") String name) {
         return helloService.deleteHi(name);
     }
 
     @PostMapping("/testHi")
-    public String test(@RequestBody Hi name){
+    public String test(@RequestBody Hi name) {
         return hiService.get(name);
     }
 
     @GetMapping("/sendMQ")
-    public void sendMessage(@RequestParam("message") String message){
+    public void sendMessage(@RequestParam("message") String message) {
         helloSender.send(message);
     }
 
     @GetMapping("/sendTopic")
-    public void sendTopic(@RequestParam("message") String message){
+    public void sendTopic(@RequestParam("message") String message) {
         helloSender.topicSend(message);
     }
 
     @GetMapping("/sendFanout")
-    public void sendFanout(@RequestParam("message") String message){
+    public void sendFanout(@RequestParam("message") String message) {
         helloSender.fanoutSend(message);
+    }
+
+    @GetMapping("sendTopicBatch")
+    public void sendTopicBatch(@RequestParam("message") String message) {
+        helloSender.topicSendBatch(message);
     }
 }

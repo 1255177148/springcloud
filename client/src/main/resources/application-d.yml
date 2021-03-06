@@ -11,6 +11,13 @@ spring:
     username: admin
     password: 19941128ya
     virtual-host: test
+    listener:
+      type: simple
+      simple:
+        # 采取手动应答
+        acknowledge-mode: manual
+        # 限制每次处理的数据个数
+        prefetch: 1
 eureka:
   client:
     service-url:
