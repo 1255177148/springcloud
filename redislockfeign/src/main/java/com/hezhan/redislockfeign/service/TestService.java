@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(value = "REDIS-LOCK-CLIENT", fallback = TestServiceImpl.class)
 public interface TestService {
 
-    @PostMapping(value = "/waresInfo/test",consumes = MediaType.APPLICATION_JSON_VALUE)
-    String demo();
-
     @PostMapping(value = "/waresInfo/inventory", consumes = MediaType.APPLICATION_JSON_VALUE)
     boolean reduceInventory();
 }

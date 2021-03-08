@@ -1,10 +1,7 @@
 package com.hezhan.redislockfeign.controller;
 
 import com.hezhan.redislockfeign.service.TestService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -19,11 +16,6 @@ public class TestController {
     @Resource
     private TestService testService;
 
-    @GetMapping("/test")
-    public String test(){
-        return testService.demo();
-    }
-
     /**
      * 负载调用减库存，模拟微服务下，集群之间的线程数据安全问题；
      * 我们知道，常见的Thread线程安全中的加锁lock，只是单个客户端服务下的线程安全，本质上是单个服务的jvm在处理，
@@ -35,5 +27,10 @@ public class TestController {
     @PostMapping("/inventory")
     public boolean inventory(){
         return testService.reduceInventory();
+    }
+
+    @GetMapping("/demo")
+    public String demo(@RequestParam("name") String name){
+        return "hello," + name;
     }
 }

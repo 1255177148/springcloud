@@ -14,7 +14,7 @@ import com.hezhan.redislockclient.entity.vo.Demo;
  */
 public interface WaresInfoService extends IService<WaresInfo> {
 
-    String hi(Demo demo);
+
 
     /**
      * 模拟用户下单时，减去库存，

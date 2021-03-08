@@ -22,5 +22,25 @@ spring:
 #          # 加上StripPrefix=1，否则转发到对应服务时会带上前缀
 #          filters:
 #            - StripPrefix=1
+  redis:
+    # redis服务端口号
+    port: 6379
+    # redis服务地址
+    host: 127.0.0.1
+    # lettuce连接池配置
+    lettuce:
+      pool:
+        # 连接池最大阻塞等待时间
+        max-wait: 1000ms
+        # 最大空闲数
+        max-idle: 8
+        # 最小空闲数
+        min-idle: 1
+        # 最大连接数
+        max-active: 8
+      # 关闭超时时间
+      shutdown-timeout: 100ms
+    timeout: 10000ms
+
 server:
   port: 8561

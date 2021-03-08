@@ -48,7 +48,6 @@ public class RouteController {
      */
     @PutMapping("/update")
     public String update(@RequestBody GatewayRouteDefinition gatewayRouteDefinition) throws URISyntaxException {
-        System.out.println("hello");
         return dynamicRouteService.update(gatewayRouteDefinition);
     }
 

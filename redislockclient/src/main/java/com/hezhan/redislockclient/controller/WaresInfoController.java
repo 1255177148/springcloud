@@ -29,12 +29,6 @@ public class WaresInfoController {
     @Resource
     private WaresInfoService waresInfoService;
 
-    @PostMapping("/test")
-    public String test(@RequestBody Demo demo){
-        log.info("进入test()");
-        return waresInfoService.hi(demo);
-    }
-
     /**
      * 模拟用户下单，减库存
      * @return

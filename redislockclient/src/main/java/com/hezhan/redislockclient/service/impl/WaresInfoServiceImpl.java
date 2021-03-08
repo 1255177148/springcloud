@@ -42,11 +42,6 @@ public class WaresInfoServiceImpl extends ServiceImpl<WaresInfoMapper, WaresInfo
     private String port;
 
     @Override
-    public String hi(Demo demo) {
-        return JSON.toJSONString(demo);
-    }
-
-    @Override
     public boolean updateInventory() {
         boolean result = false;
         // 获取分布式锁
