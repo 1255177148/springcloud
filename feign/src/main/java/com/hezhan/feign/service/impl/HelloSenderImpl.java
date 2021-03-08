@@ -19,8 +19,8 @@ public class HelloSenderImpl implements HelloSender {
 
     @Override
     public void send(String message) {
-        rabbitTemplate.setConfirmCallback((CorrelationData correlationData, boolean ack, String cause)->{
-            if (!ack){
+        rabbitTemplate.setConfirmCallback((CorrelationData correlationData, boolean ack, String cause) -> {
+            if (!ack) {
                 System.out.println("消息唯一标识" + correlationData);
                 System.out.println("失败原因" + cause);
             }
@@ -42,13 +42,21 @@ public class HelloSenderImpl implements HelloSender {
         rabbitTemplate.convertAndSend("fanout.exchange", "", message);
     }
 
-    private void confirmCallback(CorrelationData correlationData, boolean ack, String cause){
+    @Override
+    public void topicSendBatch(String message) {
+        for (int i = 0; i < 5; i++) {
+            rabbitTemplate.convertAndSend("topic.exchange", "topic.message", message + i);
+            rabbitTemplate.convertAndSend("topic.exchange", "topic.messages", message + i);
+        }
+    }
+
+    private void confirmCallback(CorrelationData correlationData, boolean ack, String cause) {
         System.out.println("发送状态：" + ack);
         System.out.println("消息唯一标识" + correlationData);
         System.out.println("失败原因" + cause);
     }
 
-    private void callBack(Message mes, int replyCode, String replyText, String exchange, String routingKey){
+    private void callBack(Message mes, int replyCode, String replyText, String exchange, String routingKey) {
         System.out.println("消息主体message" + mes);
         System.out.println("消息replyCode" + replyCode);
         System.out.println("消息replyText" + replyText);

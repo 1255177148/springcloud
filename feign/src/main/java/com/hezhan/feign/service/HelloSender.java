@@ -6,4 +6,6 @@ public interface HelloSender {
     void topicSend(String message);
 
     void fanoutSend(String message);
+
+    void topicSendBatch(String message);
 }

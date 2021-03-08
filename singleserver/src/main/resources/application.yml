@@ -1,0 +1,16 @@
+server:
+  port: 8761
+eureka:
+  client:
+    # \u8BA9\u81EA\u5DF1\u4E0D\u9700\u8981\u6CE8\u518C\u5728eureka\u4E0A\uFF0C\u8868\u660E\u81EA\u5DF1\u662F\u4E00\u4E2Aeureka server
+    #    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  server:
+    enable-self-preservation: false
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: eureka-single-server

@@ -1,8 +1,13 @@
 package com.hezhan.client.util;
 
+import com.rabbitmq.client.Channel;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @Author hezhan
@@ -17,13 +22,17 @@ public class MQUtil {
     }
 
     @RabbitListener(queuesToDeclare = {@Queue("topic1")})
-    public void receive1(String message){
-        System.out.println("接收到队列topic1的消息：" + message);
+    public void receive1(Message message, Channel channel) throws IOException {
+        System.out.println("接收到队列topic1的消息：" + new String(message.getBody(), StandardCharsets.UTF_8));
+        // 手动ack，一条条的消费
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 
     @RabbitListener(queuesToDeclare = {@Queue("topic2")})
-    public void receive2(String message){
-        System.out.println("接收到队列topic2的消息：" + message);
+    public void receive2(Message message, Channel channel) throws IOException {
+        System.out.println("接收到队列topic2的消息：" + new String(message.getBody(), StandardCharsets.UTF_8));
+        // 手动ack，一条条的消费
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
     }
 
     @RabbitListener(queuesToDeclare = {@Queue("fanout1")})
