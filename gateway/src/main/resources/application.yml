@@ -19,6 +19,8 @@ spring:
 #          predicates:
 #            # 这里的Path配置的是对应服务的前缀，依靠前缀分发到不同的服务上
 #            - Path=/client/**
+#            # 这里的Header配置的是对应服务的header断言，需要有一个header参数名是tenant的值是test
+#            - Header=tenant,test
 #          # 加上StripPrefix=1，否则转发到对应服务时会带上前缀
 #          filters:
 #            - StripPrefix=1
@@ -44,3 +46,14 @@ spring:
 
 server:
   port: 8561
+
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /
+  endpoint:
+    health:
+      show-details: always
