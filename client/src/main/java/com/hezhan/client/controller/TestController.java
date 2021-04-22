@@ -38,4 +38,9 @@ public class TestController {
         String result = "hi:" + name +",this server port is:" + port;
         return result;
     }
+
+    @GetMapping("/hi/test")
+    public String testHi(@RequestParam("name") String name, @RequestParam("age") String age){
+        return name + age;
+    }
 }

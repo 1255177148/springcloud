@@ -67,4 +67,9 @@ public class HiController {
     public void sendTopicBatch(@RequestParam("message") String message) {
         helloSender.topicSendBatch(message);
     }
+
+    @GetMapping("/hi/test")
+    public String hiTest(){
+        return hiService.testHi();
+    }
 }
