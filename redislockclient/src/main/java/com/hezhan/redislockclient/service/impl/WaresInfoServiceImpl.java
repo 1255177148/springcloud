@@ -48,7 +48,7 @@ public class WaresInfoServiceImpl extends ServiceImpl<WaresInfoMapper, WaresInfo
         RLock lock = redissonClient.getLock("lock");
         try {
             // 加分布式锁
-            lock.lock(2L, TimeUnit.SECONDS);
+            lock.lock();
             result = reduceInventory();
 
         } catch (Exception e){
