@@ -13,6 +13,15 @@ eureka:
     ip-address: 127.0.0.1
 
 feign:
+  client:
+    config:
+      # 服务名，default表示为所有服务
+      default:
+        # 即便feign使用OkHttp，但是寻常配置OkHttp的方式来配置超时时间是不生效的，只能这样配置
+        # 连接超时时间，单位为 ms
+        connectTimeout: 10000
+        # 读取超时时间，单位为 ms
+        readTimeout: 25000
   hystrix:
     enabled: false
   compression:
@@ -41,6 +50,3 @@ hystrix:
       maxQueueSize: 1000
       #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
       queueSizeRejectionThreshold: 800
-ribbon:
-  okhttp:
-    enabled: true

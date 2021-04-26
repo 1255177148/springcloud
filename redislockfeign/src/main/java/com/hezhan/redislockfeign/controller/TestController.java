@@ -1,5 +1,6 @@
 package com.hezhan.redislockfeign.controller;
 
+import com.hezhan.redislockfeign.entity.Demo;
 import com.hezhan.redislockfeign.service.TestService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,9 @@ public class TestController {
 
     @GetMapping("/demo")
     public String demo(@RequestParam("name") String name){
-        return "hello," + name;
+        Demo demo = new Demo();
+        demo.setName(name);
+        demo.setAge(1);
+        return testService.test(demo);
     }
 }
